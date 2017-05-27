@@ -1,0 +1,6 @@
+Package: R_gks
+Type: Package
+Title: R package to get data from http://www.gks.ru
+Version: 0.1
+Date: 2017-05-27
+Description: Этот пакет позволяет импортировать данные с сайта Росстата (http://www.gks.ru).
