@@ -1,0 +1,7 @@
+Package: RGksStatData
+Type: Package
+Title: R package to get data from http://www.gks.ru
+Description: This package contains functions useful to get data from http://www.gks.ru.
+Version: 0.1
+Date: 2017-05-27
+RoxygenNote: 6.0.1
