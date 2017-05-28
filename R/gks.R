@@ -6,6 +6,7 @@
 #' @import tools
 NULL
 
+
 #' Запускает функции, которые позволяют получить данные в виде фрейма, в зависимости от типа источника
 #' @param 
 #' ref - ссылка на .doc файл, на сайте Росстата, результат функции getGKSDataRef()
@@ -195,7 +196,7 @@ getTableFromDocx <- function(word_doc) {
 Add_OKATO <- function(dann_frame_main, id = 1){
     dann_frame <- dann_frame_main
     dann_frame[,id] <- toupper(dann_frame[,id])
-    Subj_table <- read.table(file = "subjects.csv", sep=",",col.names=c("Full_name","OKATO","Short_name"))
+    Subj_table <- read.table(file = system.file("extdata", "subjects.csv", package="RGksStatData"), sep=",",col.names=c("Full_name","OKATO","Short_name"))
     OKATO <- c()
     for (i in 1:nrow(dann_frame[id])){
         
