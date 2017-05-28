@@ -1,3 +1,4 @@
+Encoding: UTF-8
 Package: RGksStatData
 Type: Package
 Title: R package to get data from http://www.gks.ru
