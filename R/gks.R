@@ -1,17 +1,17 @@
 #' Этот пакет позволяет импортировать данные с сайта Росстата (http://www.gks.ru).
 #' @name RGksStatData
 #' @docType package
+#' @import XML
+#' @import xml2
+#' @import tools
 NULL
-
-library(XML)
-library(xml2)
-library(tools)
 
 #' Запускает функции, которые позволяют получить данные в виде фрейма, в зависимости от типа источника
 #' @param 
 #' ref - ссылка на .doc файл, на сайте Росстата, результат функции getGKSDataRef()
 #' @examples
 #' loadGKSData(getGKSDataRef())
+#' @export
 loadGKSData <- function(ref){
     ext <- file_ext(ref)
     if(ext == "doc"){
@@ -34,6 +34,7 @@ loadGKSData <- function(ref){
 #' encoding - нужная кодировка
 #' @examples
 #' toLocalEncoding(dataGKS)
+#' @export
 toLocalEncoding <- function(x, sep=",", quote=TRUE, encoding="utf-8"){
     rawcsv <- tempfile()
     write.csv(x, file = rawcsv)
@@ -47,6 +48,7 @@ toLocalEncoding <- function(x, sep=",", quote=TRUE, encoding="utf-8"){
 #' Расположение файла на сайте Росстата
 #' @examples
 #' getGKSDataRef()
+#' @export
 getGKSDataRef <- function(){
     path <- '/bgd/regl/'
     params <- '/?List&Id='
@@ -82,6 +84,7 @@ getGKSDataRef <- function(){
 #' 2006
 #' 3
 #' 2
+#' @export
 getTableFromHtm <- function(ref) {
     url <- paste(host_name, ref, sep = "")
     doc <- htmlParse(url, encoding = "Windows-1251")
@@ -110,6 +113,7 @@ getTableFromHtm <- function(ref) {
 #' 2
 #' ref <- gsub("/%3Cextid%3E/%3Cstoragepath%3E::\\|","",ref)
 #' Transform_doc_to_docx(ref)
+#' @export
 Transform_doc_to_docx <- function(word_doc){
   word_dir <- shell('reg query "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\WINWORD.EXE" /v PATH', intern = TRUE)
   winword_dir <- c(strsplit(word_dir[grep("PATH",word_dir)],"  ")[[1]])
@@ -137,6 +141,7 @@ Transform_doc_to_docx <- function(word_doc){
 #' В переменную dataGKS записывает данные в виде фрейма
 #' @example 
 #' getTableFromDocx("C:/username/documents/file.docx")
+#' @export
 getTableFromDocx <- function(word_doc) {
     
   tmpd <- tempdir()
@@ -186,6 +191,7 @@ getTableFromDocx <- function(word_doc) {
 #' @return исходный фрейм данных со столбцом OKATO
 #' @examples
 #' Add_OKATO(dataGKS)
+#' @export
 Add_OKATO <- function(dann_frame_main, id = 1){
     dann_frame <- dann_frame_main
     dann_frame[,id] <- toupper(dann_frame[,id])
@@ -232,6 +238,7 @@ Add_OKATO <- function(dann_frame_main, id = 1){
 #' [[3]] - Фрейм, содержащий года и значения показателя по годам
 #' @examples
 #' info_region(Add_OKATO(dataGKS), ind_name = "Население")
+#' @export
 info_region <- function(dann,ind_name = "",id = 1){
   show("Регионы:")
   show(dann[,id])
@@ -274,6 +281,7 @@ info_region <- function(dann,ind_name = "",id = 1){
 #' фрейм данных с кодами ОКАТО или список, результат функции info_region
 #' @examples
 #' Return_data()
+#' @export
 Return_data <- function(year = 2016){
   db_name <- as.character(years$db_names[years_v == year])
   path <- '/bgd/regl/'
