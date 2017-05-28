@@ -7,10 +7,13 @@
 toLocalEncoding(x, sep = ",", quote = TRUE, encoding = "utf-8")
 }
 \arguments{
-\item{x}{- data.frame с данными
-sep - разделитель полей в csv файле
-quote - экранирование данных кавычками
-encoding - нужная кодировка}
+\item{x}{- data.frame с данными}
+
+\item{sep}{- разделитель полей в csv файле}
+
+\item{quote}{- экранирование данных кавычками}
+
+\item{encoding}{- нужная кодировка}
 }
 \description{
 Исправляет кодировку для загруженного фрейма данных
