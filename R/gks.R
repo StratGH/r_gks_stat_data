@@ -309,7 +309,7 @@ Return_data <- function(year = 2016){
     id <- substr(ref, 2, nchar(ref))
   }
   loadGKSData(ref)
-  mode <- readline(prompt = paste("Выберите вид выходных данных: 1 - панельные данные; 2 - временной ряд по региону/федеральному округу ")) 
+  mode <- readline(prompt = paste("Выберите вид выходных данных:\n 1 - панельные данные\n 2 - временной ряд по региону/федеральному округу ")) 
   mode <- as.numeric(mode)
   if (mode==1){
     new_dann <- Add_OKATO(dataGKS,1)
